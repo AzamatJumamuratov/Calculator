@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="creator"></div>
+    <div class="calculator">
+      <div class="output_container">
+        <div class="operation_container" id="operation"></div>
+        <div class="outputs">
+          <p id="reserve_output"></p>
+          <p id="main_output">0</p>
+        </div>
+      </div>
+      <div class="buttons_container">
+        <button class="clear_all">AC</button>
+        <button class="delete">
+          <img
+            class="delete_img"
+            src="./sources/delete-left-solid.svg"
+            alt="delete btn icon"
+          />
+        </button>
+        <button class="opposite">+/-</button>
+        <button class="divide">/</button>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="multiply">*</button>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="substract">-</button>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="plus">+</button>
+        <button class="dot">.</button>
+        <button class="number">0</button>
+        <button class="percent">%</button>
+        <button class="equal">=</button>
+      </div>
+    </div>
+    <script>
+      FullResizeDocument();
+      window.addEventListener("resize", FullResizeDocument);
+
+      let creator_userName = "AzamatJumamuratov";
+      fetch(`https://api.github.com/users/${creator_userName}`)
+        .then((response) => response.json())
+        .then(function (user) {
+          let div = document.querySelector(".creator");
+          let avatarImg = document.createElement("img");
+          avatarImg.src = user.avatar_url;
+          div.append(avatarImg);
+
+          let creator_link = document.createElement("a");
+          creator_link.textContent = "Creator : " + user.login;
+          creator_link.href = `https://github.com/${creator_userName}`;
+          div.append(creator_link);
+        });
+
+      function FullResizeDocument(event) {
+        document.body.style.height =
+          document.documentElement.clientHeight + "px";
+      }
+    </script>
+    <script src="./calculator.js"></script>
+  </body>
+</html>
